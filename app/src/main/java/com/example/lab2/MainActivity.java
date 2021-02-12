@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     //Go to summary activity
     public void goToSum(){
         Intent summaryIntent = new Intent(MainActivity.this, SummaryActivity.class);
+        //Pass final score to summary
         summaryIntent.putExtra("Score","Score: " + String.valueOf(score.getScore()));
         startActivity(summaryIntent);
     }
@@ -54,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
             Log.d(TAG_INDEX, "index out of bounds");
         }
 
+        //Set score based on button clicked and if question is true
         //Activities performed by true button only
         if (question.isQuestionTrue() && id == 0) {
             score.correctAnswer();
@@ -67,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
             score.skipAnswer();
         }
 
+        //Set text for score view and go to next question. If next question is out of bounds, go to summary activity
         scoreView.setText("Score: " + String.valueOf(score.getScore()));
         index = nextQuestion.getNextQuestionIndex();
         if (index != -1){
@@ -84,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //Set up views and buttons based on content_main
         questionView = findViewById(R.id.questionView);
         scoreView = findViewById(R.id.scoreView);
 
@@ -95,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
         nextButton = findViewById(R.id.next_button);
         doneButton = findViewById(R.id.done_button);
 
+        //On click listeners for each button, behavior defined in btnBehavior and goToSum
         trueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

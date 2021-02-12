@@ -27,15 +27,19 @@ public class SummaryActivity extends AppCompatActivity {
         finalScore = findViewById(R.id.finalScoreView);
         exitButton = findViewById(R.id.exit_button);
 
+        //Get extras from intent
         Bundle extras = getIntent().getExtras();
         if (extras != null){
+            //Get score from previous activity (in extras), then set text of finalScore.
             String fscore = extras.getString("Score");
             finalScore.setText(fscore);
         }
 
+        //On click listener for exit button
         exitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Exit the application
                 Intent closeApp = new Intent(Intent.ACTION_MAIN);
                 closeApp.addCategory(Intent.CATEGORY_HOME);
                 startActivity(closeApp);
